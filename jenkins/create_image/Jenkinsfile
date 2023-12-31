@@ -1,40 +1,63 @@
+def tf_path = "codeonline/terraform/common"
+
 pipeline {
     agent any
+
+    parameters {
+        string(name: 'run_id', defaultValue: "${currentBuild.startTimeInMillis}", description: 'Auto Generated Unique Value to Tag Resources - Do Not Change')
+    }
 
     stages {
         stage('Checkout Main Branch') {
             steps {
-                checkout([
-                    $class: 'GitSCM', 
-                    branches: [[name: 'main']],
-                    userRemoteConfigs: [[url: 'https://github.com/avishka2k/codeonline-infra.git', credentialsId: "github-token"]]
-                ])
+                dir('${run_id}/codeonline'){
+                    checkout([
+                        $class: 'GitSCM', 
+                        branches: [[name: 'main']],
+                        userRemoteConfigs: [[url: 'https://github.com/avishka2k/codeonline-infra.git', credentialsId: "github-token"]]
+                    ])
+                }   
             }
         }
 
         stage('Checkout Config File') {
             steps {
                 script {
-                    def props = readProperties file: './configs.properties'
+                    def props = readProperties file: '${env.WORKSPACE}/${run_id}/codeonline/configs.properties'
                     for (p in props) {
                         env."${p.key}" = "${p.value}"
                     }
                     
                     sh script: """
-                        echo "----------------------------------------------"
-                        echo "Values in Config files : 
-                        $props.name "
-                        echo "----------------------------------------------"
+                        $props.name
+                    """
+                }        
+            }
+        }
+
+        stage('Create gcp machine') {
+            stage {
+                script {
+                    sh scripts: """
+                        cd '${run_id}/${tf_path}';
+                        terraform init;
+                        terraform apply --auto-approve
                     """
                 }
-                
-                
             }
         }
     }
 
     post { 
         always { 
+            script {
+                sh scripts: """
+                    cd '${run_id}/${tf_path}';
+                    terraform destroy --auto-approve
+                """
+                input('continue')
+            }
+            
             deleteDir()
         }
     }
