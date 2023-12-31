@@ -1,4 +1,4 @@
-def tf_path = "codeonline/terraform/common"
+def tf_path = "codeonline/terraform/create_image"
 
 pipeline {
     agent any
@@ -39,8 +39,8 @@ pipeline {
             steps {
                 script {
                     sh script: """
-                        cd "${run_id}/${tf_path}";
-                        terraform init;
+                        cd "${run_id}/${tf_path}"
+                        terraform init
                         terraform apply --auto-approve
                     """
                 }
@@ -52,7 +52,7 @@ pipeline {
         always { 
             script {
                 sh script: """
-                    cd "${run_id}/${tf_path}";
+                    cd "${run_id}/${tf_path}"
                     terraform destroy --auto-approve
                 """
                 input('continue')
