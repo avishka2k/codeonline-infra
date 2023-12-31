@@ -23,7 +23,7 @@ pipeline {
         stage('Checkout Config File') {
             steps {
                 script {
-                    def props = readProperties file: '${env.WORKSPACE}/${run_id}/codeonline/configs.properties'
+                    def props = readProperties file: "${env.WORKSPACE}/${run_id}/codeonline/configs.properties"
                     for (p in props) {
                         env."${p.key}" = "${p.value}"
                     }
@@ -36,9 +36,9 @@ pipeline {
         }
 
         stage('Create gcp machine') {
-            stage {
+            steps {
                 script {
-                    sh scripts: """
+                    sh script: """
                         cd '${run_id}/${tf_path}';
                         terraform init;
                         terraform apply --auto-approve
@@ -51,7 +51,7 @@ pipeline {
     post { 
         always { 
             script {
-                sh scripts: """
+                sh script: """
                     cd '${run_id}/${tf_path}';
                     terraform destroy --auto-approve
                 """
