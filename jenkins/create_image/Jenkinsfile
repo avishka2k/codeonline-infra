@@ -58,11 +58,11 @@ pipeline {
         stage('Configure machine') {
             steps {
                 script {
-                    sh script: """
-                        cd "${run_id}/codeonline/ansible"
-                        ansible-playbook vm-config.yml -i ${env.ENV_INVENTORY}
-                    """
-                }
+                    // sh script: """
+                    //     cd "${run_id}/codeonline/ansible"
+                    //     ansible-playbook vm-config.yml -i ${env.ENV_INVENTORY}
+                    // """
+                    sh script: "echo 'hi'"
             }
         }
 
