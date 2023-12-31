@@ -1,0 +1,15 @@
+---
+- name: Copy startup script
+  become: true
+  copy:
+    src: "startup.sh"
+    dest: "~/"
+    mode: 0755
+    
+- name: Run script
+  shell: "~/startup.sh"
+  register: shell_out
+
+- name: Shell log
+  debug:
+    msg: shell_out.stdout_lines

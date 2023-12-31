@@ -1,0 +1,5 @@
+---
+- name: vm initial configuration
+  hosts: codeonline
+  roles:
+    - vm-config
