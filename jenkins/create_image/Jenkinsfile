@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout Main Branch') {
             steps {
-                dir('${run_id}/codeonline'){
+                dir("${run_id}/codeonline"){
                     checkout([
                         $class: 'GitSCM', 
                         branches: [[name: 'main']],
@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script {
                     sh script: """
-                        cd '${run_id}/${tf_path}';
+                        cd "${run_id}/${tf_path}";
                         terraform init;
                         terraform apply --auto-approve
                     """
@@ -52,7 +52,7 @@ pipeline {
         always { 
             script {
                 sh script: """
-                    cd '${run_id}/${tf_path}';
+                    cd "${run_id}/${tf_path}";
                     terraform destroy --auto-approve
                 """
                 input('continue')
