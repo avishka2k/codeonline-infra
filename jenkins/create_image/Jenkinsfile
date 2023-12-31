@@ -1,5 +1,4 @@
 def tf_path = "codeonline/terraform/create_image"
-def inventory_path = "codeonline/inventory.init"
 
 pipeline {
     agent any
@@ -46,7 +45,7 @@ pipeline {
                     sh script: """
                         cd "${run_id}/${tf_path}"
                         terraform init
-                        terraform apply --auto-approve -var="inventory=${inventory_path}"
+                        terraform apply --auto-approve -var="inventory=${env.WORKSPACE}/${run_id}/codeonline"
                     """
                 }
             }
@@ -66,7 +65,7 @@ pipeline {
             script {
                 sh script: """
                     cd "${run_id}/${tf_path}"
-                    terraform destroy --auto-approve -var="inventory=${inventory_path}"
+                    terraform destroy --auto-approve -var="inventory=${env.WORKSPACE}/${run_id}/codeonline"
                 """
             }           
             deleteDir()
