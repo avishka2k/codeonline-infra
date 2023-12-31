@@ -41,3 +41,8 @@ variable "bootdisk_image" {
   description = "image"
   default     = "debian-cloud/debian-11"
 }
+
+variable "inventory" {
+  type        = string
+  description = "inventory path"
+}

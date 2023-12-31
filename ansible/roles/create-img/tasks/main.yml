@@ -1,0 +1,5 @@
+---
+- name: Create vm image
+  hosts: codeonline
+  roles:
+    - create-img.yml

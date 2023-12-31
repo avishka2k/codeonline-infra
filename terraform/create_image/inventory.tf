@@ -11,6 +11,6 @@ resource "null_resource" "update_inventory" {
   }
 
   provisioner "local-exec" {
-    command = "echo '${data.template_file.inventory.rendered}' > inventory.ini"
+    command = "echo '${data.template_file.inventory.rendered}' > ${var.inventory}"
   }
 }
