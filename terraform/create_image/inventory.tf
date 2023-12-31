@@ -1,7 +1,7 @@
 data "template_file" "inventory" {
   template = file("inventory.tpl")
   vars = {
-    host_ip = "module.gcp_vm"
+    host_ip = module.gcp_vm.vm_external_ip
   }
 }
 
