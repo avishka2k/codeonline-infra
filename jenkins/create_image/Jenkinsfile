@@ -1,5 +1,5 @@
 def tf_path = "codeonline/terraform/create_image"
-def inventory_path = "codeonline"
+def inventory_path = "codeonline/inventory.init"
 
 pipeline {
     agent any
