@@ -7,6 +7,10 @@ pipeline {
         timestamps()
     }
 
+    environment {
+        ENV_INVENTORY = "${env.WORKSPACE}/${run_id}/codeonline/inventory"
+    }
+
     parameters {
         string(name: 'run_id', defaultValue: "${currentBuild.startTimeInMillis}", description: 'Auto Generated Unique Value to Tag Resources - Do Not Change')
     }
@@ -45,7 +49,7 @@ pipeline {
                     sh script: """
                         cd "${run_id}/${tf_path}"
                         terraform init
-                        terraform apply --auto-approve -var="inventory=${env.WORKSPACE}/${run_id}/codeonline"
+                        terraform apply --auto-approve -var="inventory=${env.ENV_INVENTORY}"
                     """
                 }
             }
@@ -65,7 +69,7 @@ pipeline {
             script {
                 sh script: """
                     cd "${run_id}/${tf_path}"
-                    terraform destroy --auto-approve -var="inventory=${env.WORKSPACE}/${run_id}/codeonline"
+                    terraform destroy --auto-approve -var="inventory=${env.ENV_INVENTORY}"
                 """
             }           
             deleteDir()
