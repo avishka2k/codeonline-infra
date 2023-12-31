@@ -3,6 +3,10 @@ def tf_path = "codeonline/terraform/create_image"
 pipeline {
     agent any
 
+    options {
+        timestamps()
+    }
+
     parameters {
         string(name: 'run_id', defaultValue: "${currentBuild.startTimeInMillis}", description: 'Auto Generated Unique Value to Tag Resources - Do Not Change')
     }
