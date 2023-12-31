@@ -39,7 +39,7 @@ pipeline {
             }
         }
 
-        stage('Create gcp machine') {
+        stage('Create GCP VM') {
             steps {
                 script {
                     sh script: """
@@ -47,6 +47,14 @@ pipeline {
                         terraform init
                         terraform apply --auto-approve
                     """
+                }
+            }
+        }
+
+        stage('Sleep') {
+            steps {
+                script {
+                    input('continue')
                 }
             }
         }
@@ -59,9 +67,7 @@ pipeline {
                     cd "${run_id}/${tf_path}"
                     terraform destroy --auto-approve
                 """
-                input('continue')
-            }
-            
+            }           
             deleteDir()
         }
     }
