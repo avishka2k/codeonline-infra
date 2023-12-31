@@ -29,7 +29,7 @@ pipeline {
                     }
                     
                     sh script: """
-                        $props.name
+                      echo "$props.name}"
                     """
                 }        
             }
