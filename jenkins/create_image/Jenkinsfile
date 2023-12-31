@@ -16,8 +16,16 @@ pipeline {
             steps {
                 script {
                     def props = readProperties file: './configs.properties'
-                    sh script: "${props}"
-                    sh script: "one ${props.name}"
+                    for (p in props) {
+                        env."${p.key}" = "${p.value}"
+                    }
+                    
+                    sh script: """
+                        echo "----------------------------------------------"
+                        echo "Values in Config files : 
+                        $props.name "
+                        echo "----------------------------------------------"
+                    """
                 }
                 
                 
