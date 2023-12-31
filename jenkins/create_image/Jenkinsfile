@@ -62,6 +62,7 @@ pipeline {
                         cd "${run_id}/codeonline/ansible"
                         #ansible-playbook vm-config.yml -i ${env.ENV_INVENTORY}
                     """
+                }
             }
         }
 
