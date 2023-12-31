@@ -21,10 +21,6 @@ resource "google_compute_instance" "gcp_vm" {
     }
   }
   tags = ["http-server", "https-server"]
-
-#   provisioner "local-exec" {
-#     command = "echo '${data.template_file.host.rendered}' > inventory.ini"
-#   }
 }
 
 resource "google_compute_firewall" "default" {
