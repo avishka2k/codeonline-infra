@@ -5,10 +5,20 @@ pipeline {
         timeout(time: 1, unit: 'SECONDS')
     }
     stages {
-        stage('Example') {
+        stage('Checkout Branch') {
             steps {
-                echo 'Hello World'
+                checkout([
+                    $class: 'GitSCM', 
+                    branches: [[name: 'main']],
+                    userRemoteConfigs: [[url: 'https://github.com/avishka2k/codeonline-infra.git', credentialsId: "github-token"]]
+                ])
             }
+        }
+    }
+
+    post { 
+        always { 
+            deleteDir()
         }
     }
 }
