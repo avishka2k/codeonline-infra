@@ -13,7 +13,7 @@ variable "region" {
 variable "credentials" {
   type        = string
   description = "credentials"
-  default     = "../auth/devops-world-409303-08f785158830.json"
+  default     = "codeonline-gcp.json"
 }
 
 variable "project" {
