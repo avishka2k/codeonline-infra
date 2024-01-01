@@ -28,7 +28,7 @@ resource "google_compute_instance" "gcp_vm" {
 }
 
 resource "google_compute_firewall" "default" {
-  name    = default
+  name    = join("-", [var.prefix, random_id.random.hex, "firewall"])
   network = google_compute_network.default.name
   project = google_compute_instance.gcp_vm.project
 
@@ -40,7 +40,7 @@ resource "google_compute_firewall" "default" {
   allow {
     protocol = "icmp"
   }
-
+  
   source_ranges = ["0.0.0.0/0"]
 }
 
