@@ -3,8 +3,8 @@
 PASSWORD_RAND=$(echo $RANDOM | md5sum | head -c 20;)
 
 sudo apt-get update -y
-sudo apt-get install nodejs
-sudo apt-get install openjdk-17-jdk
+sudo apt-get install -y nodejs
+sudo apt-get install -y openjdk-17-jdk
 mkdir vscode
 cd vscode
 wget https://github.com/coder/code-server/releases/download/v4.20.0/code-server-4.20.0-linux-amd64.tar.gz
