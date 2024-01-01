@@ -6,10 +6,10 @@
     dest: "/home/avishkaprabathg"
     mode: "0755"
     
-# - name: Run script
-#   shell: "/home/avishkaprabathg/startup.sh"
-#   register: shell_out
+- name: Run script
+  shell: "~/startup.sh"
+  register: shell_out
 
-# - name: Shell log
-#   debug:
-#     var: shell_out
+- name: Shell log
+  debug:
+    var: shell_out
