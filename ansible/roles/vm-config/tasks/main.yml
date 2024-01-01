@@ -10,6 +10,6 @@
 #   shell: "/home/avishkaprabathg/startup.sh"
 #   register: shell_out
 
-- name: Shell log
-  debug:
-    var: shell_out
+# - name: Shell log
+#   debug:
+#     var: shell_out
