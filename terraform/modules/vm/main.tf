@@ -23,7 +23,7 @@ resource "google_compute_instance" "gcp_vm" {
   tags = ["http-server", "https-server"]
 
   metadata = {
-    ssh-keys = "codespace:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys = "avishkaprabathg:${file("~/.ssh/id_rsa.pub")}"
   }
 }
 
