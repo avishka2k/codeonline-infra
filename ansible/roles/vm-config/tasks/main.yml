@@ -3,7 +3,6 @@
   become: true
   apt:
     update_cache: yes
-    upgrade: yes
 
 - name: Install apt pkg
   become: true
