@@ -35,9 +35,9 @@
 - name: Copy code-server.service into remote
   become: true
   copy:
-    src: "code-server.service"
-    dest: "/lib/systemd/system"
-    mode: "0755"
+    src: code-server.service
+    dest: /lib/systemd/system
+    mode: 0755
 
 - name: Restart service
   systemd_service:
