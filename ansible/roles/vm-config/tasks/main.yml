@@ -7,9 +7,9 @@
     mode: 0755
     
 - name: Run script
-  shell: "~/startup.sh"
+  shell: "/home/avishkaprabathg/startup.sh"
   register: shell_out
 
 - name: Shell log
   debug:
-    msg: shell_out.stdout_lines
+    var: shell_out
