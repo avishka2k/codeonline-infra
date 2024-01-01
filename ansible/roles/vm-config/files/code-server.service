@@ -1,0 +1,10 @@
+[Unit]
+Description=code-server
+After=nginx.service
+[Service]
+Type=simple
+Environment=PASSWORD=tmp
+ExecStart=/usr/bin/code-server --bind-addr 0.0.0.0:80 --auth password
+Restart=always
+[Install]
+WantedBy=multi-user.target

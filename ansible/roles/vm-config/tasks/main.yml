@@ -2,8 +2,8 @@
 - name: Apt update and upgrade
   become: true
   apt:
-    upgrade: yes
     update_cache: yes
+    upgrade: yes
 
 - name: Install apt pkg
   become: true
@@ -12,13 +12,41 @@
     - openjdk-11-jdk
     - nodejs
 
-- name: Download code-server latest
-  get_url:
-    url: https://github.com/coder/code-server/releases/download/v4.2.0/code-server-4.2.0-linux-amd64.tar.gz
-    dest: /home/{{ username }}/
-    mode: '0755'
-
-- name: Extract code-server into /home/{{ username }}
+- name: Download and extract code-server
   unarchive:
-    src: /home/{{ username }}/code-server-4.2.0-linux-amd64.tar.gz
-    dest: /home/{{ username }}/
+    src: https://github.com/coder/code-server/releases/download/v4.2.0/code-server-4.2.0-linux-amd64.tar.gz
+    dest: /home/{{ username }}
+    remote_src: yes
+
+- name: Copy into code-server
+  become: true
+  copy:
+    src: /home/{{ username }}/code-server-4.2.0-linux-amd64
+    dest: /usr/lib/code-server
+    remote_src: yes
+
+- name: Create a symbolic link
+  become: true
+  file:
+    src: /usr/lib/code-server/code-server-4.2.0-linux-amd64/bin/code-server
+    dest: /usr/bin/code-server
+    state: link
+
+- name: Copy code-server.service into remote
+  become: true
+  copy:
+    src: "code-server.service"
+    dest: "/lib/systemd/system"
+    mode: "0755"
+
+- name: Restart service
+  systemd_service:
+    state: restarted
+    daemon_reload: true
+    name: code-server
+
+- name: Enable service code-server and ensure it is not masked
+  systemd_service:
+    name: code-server
+    enabled: true
+    masked: no
