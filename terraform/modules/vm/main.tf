@@ -28,25 +28,20 @@ resource "google_compute_instance" "gcp_vm" {
 }
 
 resource "google_compute_firewall" "default" {
-  name    = join("-", [var.prefix, random_id.random.hex, "firewall"])
+  name    = default
   network = google_compute_network.default.name
   project = google_compute_instance.gcp_vm.project
 
   allow {
     protocol = "tcp"
-    ports    = ["80", "8080", "443"]
+    ports    = ["80", "8080", "443", "22"]
   }
 
-  allow {
-    protocol = "tcp"
-    ports    = ["22"] 
-  }
   allow {
     protocol = "icmp"
   }
 
-  source_ranges = ["35.235.240.0/20"]
-  source_tags   = ["web"]
+  source_ranges = ["0.0.0.0/0"]
 }
 
 resource "google_compute_network" "default" {
