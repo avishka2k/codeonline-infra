@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 PASSWORD_RAND=$(echo $RANDOM | md5sum | head -c 20;)
 
@@ -11,6 +11,7 @@ wget https://github.com/coder/code-server/releases/download/v4.20.0/code-server-
 tar -xvf code-server-4.20.0-linux-amd64.tar.gz
 sudo cp -r code-server-4.20.0-linux-amd64 /usr/lib/code-server
 sudo ln -s /usr/lib/code-server/bin/code-server /usr/bin/code-server
+sudo sudo touch /lib/systemd/system/code-server.service 
 sudo cat > /lib/systemd/system/code-server.service <<EOF
 [Unit]
 Description=code-server
