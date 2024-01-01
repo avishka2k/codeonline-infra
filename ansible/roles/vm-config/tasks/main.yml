@@ -38,14 +38,14 @@
     dest: /lib/systemd/system
     mode: 0755
 
-- name: Restart service
-  systemd_service:
-    state: restarted
-    daemon_reload: true
-    name: code-server
-
 - name: Enable service code-server and ensure it is not masked
   systemd_service:
     name: code-server
     enabled: true
     masked: no
+
+- name: Start service
+  systemd_service:
+    state: started
+    daemon_reload: true
+    name: code-server
