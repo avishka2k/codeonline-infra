@@ -60,6 +60,7 @@ pipeline {
                 script {
                     sh script: """
                         cd "${run_id}/codeonline/ansible"
+                        ANSIBLE_HOST_KEY_CHECKING=False
                         ansible-playbook vm-config.yml -i ${env.ENV_INVENTORY}
                     """
                 }
