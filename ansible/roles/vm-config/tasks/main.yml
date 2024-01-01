@@ -3,8 +3,8 @@
   become: true
   copy:
     src: "startup.sh"
-    dest: "~/"
-    mode: 0755
+    dest: "/home/avishkaprabathg"
+    mode: "0755"
     
 # - name: Run script
 #   shell: "/home/avishkaprabathg/startup.sh"
