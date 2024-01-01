@@ -41,6 +41,9 @@ resource "google_compute_firewall" "default" {
     protocol = "tcp"
     ports    = ["22"] 
   }
+  allow {
+    protocol = "icmp"
+  }
 
   source_ranges = ["35.235.240.0/20"]
   source_tags   = ["web"]
