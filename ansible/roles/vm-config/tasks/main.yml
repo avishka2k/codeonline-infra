@@ -1,15 +1,24 @@
 ---
-- name: Copy startup script
+- name: Apt update and upgrade
   become: true
-  copy:
-    src: "startup.sh"
-    dest: "/home/avishkaprabathg"
-    mode: "0755"
-    
-- name: Run script
-  shell: "~/startup.sh"
-  register: shell_out
+  apt:
+    upgrade: yes
+    update_cache: yes
 
-- name: Shell log
-  debug:
-    var: shell_out
+- name: Install apt pkg
+  become: true
+  apt:
+    pkg:
+    - openjdk-11-jdk
+    - nodejs
+
+- name: Download code-server latest
+  get_url:
+    url: https://github.com/coder/code-server/releases/download/v4.2.0/code-server-4.2.0-linux-amd64.tar.gz
+    dest: /home/{{ username }}/
+    mode: '0755'
+
+- name: Extract code-server into /home/{{ username }}
+  unarchive:
+    src: /home/{{ username }}/code-server-4.2.0-linux-amd64.tar.gz
+    dest: /home/{{ username }}/

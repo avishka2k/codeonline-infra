@@ -61,7 +61,7 @@ pipeline {
                     sh script: """
                         cd "${run_id}/codeonline/ansible"
                         export ANSIBLE_CONFIG=ansible.cfg
-                        ansible-playbook vm-config.yml -i ${env.ENV_INVENTORY}
+                        ansible-playbook vm-config.yml -i ${env.ENV_INVENTORY} --extra-vars "username=avishkaprabathg"
                     """
                 }
             }
