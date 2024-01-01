@@ -79,6 +79,7 @@ pipeline {
     post { 
         always { 
             script {
+                input('continue')
                 sh script: """
                     cd "${run_id}/${tf_path}"
                     terraform destroy --auto-approve -var="inventory=${env.ENV_INVENTORY}"
