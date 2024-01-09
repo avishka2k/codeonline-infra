@@ -1,0 +1,5 @@
+---
+- name: Create compute image
+  hosts: all
+  roles:
+    - create-img

@@ -1,5 +1,9 @@
 ---
-- name: Create vm image
-  hosts: codeonline
-  roles:
-    - create-img.yml
+- name: create a image
+  google.cloud.gcp_compute_image:
+    name: test_object
+    source_disk: "{{ disk }}"
+    project: test_project
+    auth_kind: serviceaccount
+    service_account_file: "/tmp/auth.pem"
+    state: present
