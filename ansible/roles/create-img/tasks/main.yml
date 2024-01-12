@@ -1,6 +1,5 @@
 ---
 - name: Create GCP Compute Engine Image
-  hosts: localhost
   gather_facts: False
   tasks:
     - name: Set GCP authentication
