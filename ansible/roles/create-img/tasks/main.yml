@@ -3,10 +3,10 @@
   gcp_auth:
     credentials_file: "../../../terraform/modules/codeonline-gcp.json"
 
-    # - name: Create image from instance
-    #   gcp_compute_image:
-    #     name: "new-image-name"
-    #     source_instance: "projects/your-project-id/zones/your-zone/instances/instance-group-instance-name"
+# - name: Create image from instance
+#   gcp_compute_image:
+#     name: "new-image-name"
+#     source_instance: "projects/your-project-id/zones/your-zone/instances/instance-group-instance-name"
 
     # - name: Cleanup (optional)
     #   gcp_compute_instance_group_manager:
