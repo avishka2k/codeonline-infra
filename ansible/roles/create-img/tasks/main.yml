@@ -1,9 +1,18 @@
 ---
-- name: create a image
-  google.cloud.gcp_compute_image:
-    name: test_object
-    source_disk: "{{ disk }}"
-    project: test_project
-    auth_kind: serviceaccount
-    service_account_file: "/tmp/auth.pem"
-    state: present
+- name: Create GCP Compute Engine Image
+  hosts: localhost
+  gather_facts: False
+  tasks:
+    - name: Set GCP authentication
+      gcp_auth:
+        credentials_file: "../../../terraform/modules/codeonline-gcp.json"
+
+    # - name: Create image from instance
+    #   gcp_compute_image:
+    #     name: "new-image-name"
+    #     source_instance: "projects/your-project-id/zones/your-zone/instances/instance-group-instance-name"
+
+    # - name: Cleanup (optional)
+    #   gcp_compute_instance_group_manager:
+    #     name: "instance-group-manager-name"
+    #     state: "absent"
