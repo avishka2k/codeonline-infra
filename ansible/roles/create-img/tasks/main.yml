@@ -2,8 +2,7 @@
 - name: Create GCP Compute Engine Image
   tasks:
     - name: Set GCP authentication
-      community.general.gcp_auth:
-        credentials_file: "../../../terraform/modules/codeonline-gcp.json"
+      shell: "ls"
 
     # - name: Create image from instance
     #   gcp_compute_image:
