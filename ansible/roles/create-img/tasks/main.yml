@@ -1,6 +1,6 @@
 ---
 - name: Set GCP authentication
-  gcp_auth:
+  community.general.gcp_auth:
     credentials_file: "../../../terraform/modules/codeonline-gcp.json"
 
 # - name: Create image from instance
