@@ -1,8 +1,6 @@
 ---
 - name: Create GCP Compute Engine Image
-  tasks:
-    - name: Set GCP authentication
-      shell: "ls"
+  shell: "ls"
 
     # - name: Create image from instance
     #   gcp_compute_image:
