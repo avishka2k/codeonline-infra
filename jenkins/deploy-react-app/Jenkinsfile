@@ -49,6 +49,7 @@ pipeline {
                     sh script: """
                         cd "${run_id}/${tf_path}"
                         terraform init
+                        terraform plan
                         terraform apply --auto-approve"
                     """
                 }
