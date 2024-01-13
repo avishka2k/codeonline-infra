@@ -55,5 +55,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Sleep before machine config') {
+            steps {
+                script {
+                    input('continue')
+                }
+            }
+        }
     }
 }
