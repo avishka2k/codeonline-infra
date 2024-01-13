@@ -28,29 +28,30 @@ pipeline {
             }
         }
 
-    stage('Checkout Config File') {
-        steps {
-            script {
-                def props = readProperties file: "${env.WORKSPACE}/${run_id}/codeonline/configs.properties"
-                for (p in props) {
-                    env."${p.key}" = "${p.value}"
-                }
-                
-                sh script: """
-                    echo "$props.name}"
-                """
-            }        
+        stage('Checkout Config File') {
+            steps {
+                script {
+                    def props = readProperties file: "${env.WORKSPACE}/${run_id}/codeonline/configs.properties"
+                    for (p in props) {
+                        env."${p.key}" = "${p.value}"
+                    }
+                    
+                    sh script: """
+                        echo "$props.name}"
+                    """
+                }        
+            }
         }
-    }
 
-    stage('Create GCP VM') {
-        steps {
-            script {
-                sh script: """
-                    cd "${run_id}/${tf_path}"
-                    terraform init
-                    terraform apply --auto-approve"
-                """
+        stage('Create GCP VM') {
+            steps {
+                script {
+                    sh script: """
+                        cd "${run_id}/${tf_path}"
+                        terraform init
+                        terraform apply --auto-approve"
+                    """
+                }
             }
         }
     }
