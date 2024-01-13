@@ -56,11 +56,13 @@ pipeline {
             }
         }
 
-        stage('Sleep before machine config') {
-            steps {
+        post { 
+            always { 
                 script {
                     input('continue')
-                }
+                    
+                }           
+                deleteDir()
             }
         }
     }
