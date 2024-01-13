@@ -21,8 +21,3 @@ variable "project" {
   description = "project id"
   default     = "devops-world-409303"
 }
-
-variable "inventory" {
-  type        = string
-  description = "inventory path"
-}
