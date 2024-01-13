@@ -14,5 +14,5 @@ data "google_compute_image" "react_img" {
 }
 
 output "latest_jenkins_user_image" {
-  value = sort(data.google_compute_images.react_img.images, attribute = "creation_date")[0].name
+  value = google_compute_image.react_img.values
 }
