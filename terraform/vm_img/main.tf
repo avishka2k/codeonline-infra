@@ -5,14 +5,10 @@ provider "google" {
   zone        = var.zone
 }
 
-data "google_compute_image" "react_img" {
-  most_recent = true
-  filter {
-    name   = "name"
-    values = "react-deploy-img"
-  }
-}
+resource "google_compute_instance_from_machine_image" "tpl" {
+  name     = "instance-from-machine-image"
+  zone     = var.zone
 
-output "latest_jenkins_user_image" {
-  value = google_compute_image.react_img.values
+  source_machine_image = "projects/${var.project}/global/machineImages/jenkins-server-image"
+
 }
