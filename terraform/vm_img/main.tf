@@ -7,5 +7,4 @@ provider "google" {
 
 module "gcp_vm" {
   source    = "../modules/c_i"
-  # inventory = var.inventory
 }

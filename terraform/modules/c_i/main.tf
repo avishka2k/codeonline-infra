@@ -1,7 +1,12 @@
-resource "google_compute_instance_from_machine_image" "tpl" {
-  name     = "instance-from-machine-image"
-  zone     = var.zone
+resource "google_compute_instance" "tpl" {
+  name         = "instance-from-machine-image"
+  machine_type = "your-machine-type"  
+  zone         = var.zone
 
-  source_machine_image = "projects/${var.project}/global/machineImages/jenkins-server-image"
-
+  boot_disk {
+    initialize_params {
+      image = "projects/${var.project}/global/machineImages/jenkins-server-image"
+    }
+  }
 }
+
