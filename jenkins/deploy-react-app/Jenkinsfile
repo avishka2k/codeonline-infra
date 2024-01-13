@@ -55,15 +55,15 @@ pipeline {
                 }
             }
         }
+    }
 
-        post { 
-            always { 
-                script {
-                    input('continue')
-                    
-                }           
-                deleteDir()
-            }
+    post { 
+        always { 
+            script {
+                input('continue')
+                
+            }           
+            deleteDir()
         }
     }
 }
