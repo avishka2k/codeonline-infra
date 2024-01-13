@@ -27,7 +27,6 @@ pipeline {
                 }   
             }
         }
-    }
 
     stage('Checkout Config File') {
         steps {
@@ -55,6 +54,4 @@ pipeline {
             }
         }
     }
-
-
 }
