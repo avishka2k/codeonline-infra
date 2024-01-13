@@ -50,7 +50,7 @@ pipeline {
                         cd "${run_id}/${tf_path}"
                         terraform init
                         terraform plan
-                        terraform apply --auto-approve"
+                        terraform apply --auto-approve -var="inventory=${env.ENV_INVENTORY}"
                     """
                 }
             }
