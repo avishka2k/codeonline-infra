@@ -75,17 +75,17 @@ pipeline {
         //     }
         // }
 
-        stage('Create compute image') {
-            steps {
-                script {
-                    sh script: """
-                        cd "${run_id}/codeonline/ansible"
-                        export ANSIBLE_CONFIG=ansible.cfg
-                        ansible-playbook create-img.yml -i ${env.ENV_INVENTORY} --extra-vars "username=avishkaprabathg"
-                    """
-                }
-            }
-        }
+        // stage('Create compute image') {
+        //     steps {
+        //         script {
+        //             sh script: """
+        //                 cd "${run_id}/codeonline/ansible"
+        //                 export ANSIBLE_CONFIG=ansible.cfg
+        //                 ansible-playbook create-img.yml -i ${env.ENV_INVENTORY} --extra-vars "username=avishkaprabathg"
+        //             """
+        //         }
+        //     }
+        // }
 
         stage('Sleep') {
             steps {
