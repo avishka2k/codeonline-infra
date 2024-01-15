@@ -55,25 +55,25 @@ pipeline {
             }
         }
 
-        // stage('Sleep before machine config') {
-        //     steps {
-        //         script {
-        //             input('continue')
-        //         }
-        //     }
-        // }
+        stage('Sleep before machine config') {
+            steps {
+                script {
+                    input('continue')
+                }
+            }
+        }
 
-        // stage('Configure machine') {
-        //     steps {
-        //         script {
-        //             sh script: """
-        //                 cd "${run_id}/codeonline/ansible"
-        //                 export ANSIBLE_CONFIG=ansible.cfg
-        //                 ansible-playbook vm-config.yml -i ${env.ENV_INVENTORY} --extra-vars "username=avishkaprabathg"
-        //             """
-        //         }
-        //     }
-        // }
+        stage('Configure machine') {
+            steps {
+                script {
+                    sh script: """
+                        cd "${run_id}/codeonline/ansible"
+                        export ANSIBLE_CONFIG=ansible.cfg
+                        ansible-playbook vm-config.yml -i ${env.ENV_INVENTORY} --extra-vars "username=avishkaprabathg"
+                    """
+                }
+            }
+        }
 
         // stage('Create compute image') {
         //     steps {
