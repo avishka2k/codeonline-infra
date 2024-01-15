@@ -22,9 +22,9 @@ resource "google_compute_instance" "gcp_vm" {
   }
   tags = ["http-server", "https-server"]
 
-  # metadata = {
-  #   ssh-keys = "avishkaprabathg:${file("/home/avishkaprabathg/.ssh/id_rsa.pub")}"
-  # }
+  metadata = {
+    ssh-keys = "avishkaprabathg:${file("/home/avishkaprabathg/.ssh/id_rsa.pub")}"
+  }
 }
 
 resource "google_compute_firewall" "default" {
