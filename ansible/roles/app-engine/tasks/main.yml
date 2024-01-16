@@ -1,7 +1,6 @@
 ---
 - name: npm install
   shell: "npm install"
-  become: yes
   args:
     chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}"
 
