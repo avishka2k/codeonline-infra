@@ -1,11 +1,13 @@
 ---
 - name: npm install
   shell: "npm install"
+  become: yes
   args:
     chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}"
 
 - name: npm run build
   shell: "npm run build"
+  become: yes
   args:
     chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}"
 
