@@ -1,6 +1,6 @@
 ---
 - name: npm install
-  shell: "npm install && npm run build"
+  shell: "npm install && sudo npm run build"
   args:
     chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}"
 
