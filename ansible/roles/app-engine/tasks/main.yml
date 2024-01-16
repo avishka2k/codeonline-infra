@@ -1,13 +1,6 @@
 ---
 - name: npm install
-  shell: "npm install"
-  args:
-    chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}"
-
-- name: npm run build
-  shell: "npm run build"
-  become: yes
-  become_user: root
+  shell: "npm install && npm run build"
   args:
     chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}"
 
