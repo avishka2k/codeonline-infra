@@ -1,0 +1,27 @@
+---
+- name: npm install
+  shell: "npm install"
+  args:
+    chdir: "{{workspace}}/{{run_id}}/dev/{{root_dir}}"
+
+- name: npm run build
+  shell: "npm run build"
+  args:
+    chdir: "{{workspace}}/{{run_id}}/dev/{{root_dir}}"
+
+- name: Remove files and directories
+  find:
+    paths: "{{workspace}}/{{run_id}}/dev"
+    patterns: '*'
+    recurse: yes
+  register: files_to_remove
+
+- name: Exclude 'build' directory
+  set_fact:
+    files_to_keep: "{{ files_to_remove.files | rejectattr('path', 'match', '^{{workspace}}/{{run_id}}/dev/build/') | map(attribute='path') | list }}"
+
+- name: Remove files and directories (except 'build')
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items: "{{ files_to_keep }}"

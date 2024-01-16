@@ -1,0 +1,5 @@
+---
+- name: deploy app
+  hosts: 127.0.0.1
+  roles:
+    - app-engine
