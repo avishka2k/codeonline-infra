@@ -1,7 +1,7 @@
 def tf_path = "codeonline/terraform/vm_img"
 
 pipeline {
-    agent any
+    agent gcp-agent
 
     options {
         timestamps()
