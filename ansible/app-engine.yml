@@ -3,5 +3,6 @@
   hosts: 127.0.0.1
   vars:
     workdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
+    version: "{{version}}"
   roles:
     - app-engine

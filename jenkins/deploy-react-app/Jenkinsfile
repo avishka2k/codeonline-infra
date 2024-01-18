@@ -16,6 +16,7 @@ pipeline {
         string(name: 'dev_branch', defaultValue: "main_dev", description: 'dev branch')
         string(name: 'root_dir', defaultValue: "app/client", description: 'root dir| ex: app/client')
         choice(name: 'runtime', description: 'node version', choices: ['nodejs20', 'nodejs18'])
+        string(name: 'version', defaultValue: "v1", description: 'app version')
         string(name: 'run_id', defaultValue: "${currentBuild.startTimeInMillis}", description: 'Auto Generated Unique Value to Tag Resources - Do Not Change')
     }
 
@@ -65,7 +66,7 @@ pipeline {
                     sh script: """
                         cd "${run_id}/codeonline/ansible"
                         export ANSIBLE_CONFIG=ansible.cfg
-                        ansible-playbook app-engine.yml --extra-vars 'runtime=${params.runtime} workspace=${env.WORKSPACE} runid=${params.run_id} root_dir=${params.root_dir}'
+                        ansible-playbook app-engine.yml --extra-vars 'runtime=${params.runtime} workspace=${env.WORKSPACE} runid=${params.run_id} root_dir=${params.root_dir} version=${params.version}'
                     """
                 }
             }

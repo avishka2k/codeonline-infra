@@ -21,3 +21,8 @@
     src: app.yaml
     dest: "{{workdir}}"
     mode: 0755
+  
+- name: App deploy
+  command: gcloud app deploy -q --version="{{version}}"
+  args:
+    chdir: "{{workdir}}"
