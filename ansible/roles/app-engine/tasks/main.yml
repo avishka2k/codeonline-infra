@@ -6,7 +6,7 @@
     state: present
 
 - name: npm build
-  command: npm run build
+  command: CI= npm run build
   args:
     chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
 
