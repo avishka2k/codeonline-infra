@@ -9,9 +9,15 @@
   args:
     chdir: "{{workdir}}"
 
-- name: Clean dir (excluding 'build/') {{workdir}}
+- name: Clean dir (excluding 'build/')
   shell: |
     find . -mindepth 1 -maxdepth 1 -type d ! -name 'build' -exec rm -r {} \;
     find . -mindepth 1 -maxdepth 1 ! -name 'build' -exec rm -f {} \;
   args:
     chdir: "{{workdir}}"
+
+- name: Copy app.yaml
+  copy:
+    src: app.yaml
+    dest: "{{workdir}}"
+    mode: 0755
