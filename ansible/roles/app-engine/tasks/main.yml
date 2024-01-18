@@ -4,6 +4,11 @@
   args:
     chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
 
+- name: npm build
+  shell: "npm run build"
+  args:
+    chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
+
 - name: Remove files and directories
   find:
     paths: "{{workspace}}/{{runid}}/dev"
