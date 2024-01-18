@@ -9,19 +9,9 @@
   args:
     chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
 
-- name: Remove files and directories
-  find:
-    paths: "{{workspace}}/{{runid}}/dev"
-    patterns: '*'
-    recurse: yes
-  register: files_to_remove
-
-- name: Exclude 'build' directory
-  set_fact:
-    files_to_keep: "{{ files_to_remove.files | rejectattr('path', 'match', '^{{workspace}}/{{runid}}/dev/build/') | map(attribute='path') | list }}"
-
-- name: Remove files and directories (except 'build')
-  file:
-    path: "{{ item }}"
-    state: absent
-  with_items: "{{ files_to_keep }}"
+- name: npm build
+  shell: |
+    find . -mindepth 1 -maxdepth 1 -type d ! -name 'build' -exec rm -r {} \;
+    find . -mindepth 1 -maxdepth 1 ! -name 'build' -exec rm -f {} \;
+  args:
+    chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
