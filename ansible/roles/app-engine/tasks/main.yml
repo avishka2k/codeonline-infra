@@ -1,8 +1,8 @@
 ---
 - name: npm install
-  shell: "npm install && sudo npm run build"
+  shell: "npm install && npm run build"
   args:
-    chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}"
+    chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
 
 - name: Remove files and directories
   find:
