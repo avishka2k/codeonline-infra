@@ -1,12 +1,13 @@
 ---
-
-- name: Install packages based on package.json using the npm
-  npm:
-    path: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
-    state: present
+- name: npm install
+  command: npm install
+  args:
+    chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
 
 - name: npm build
-  command: CI= npm run build
+  environment:
+    CI: "true"
+  command: npm run build
   args:
     chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
 
