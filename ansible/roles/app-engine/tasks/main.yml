@@ -34,4 +34,3 @@
 - name: msg
   debug:
     msg: "{{browse_app.stdout}}"
-    #d
