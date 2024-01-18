@@ -1,11 +1,11 @@
 ---
 - name: npm install
-  shell: "npm install"
+  command: npm install
   args:
     chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
 
 - name: npm build
-  shell: "npm run build"
+  command: npm run build
   args:
     chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
 
