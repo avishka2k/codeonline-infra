@@ -2,16 +2,16 @@
 - name: npm install
   command: npm install
   args:
-    chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
+    chdir: "{{workdir}}"
 
 - name: npm build
   shell: CI=false npm run build
   args:
-    chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
+    chdir: "{{workdir}}"
 
-- name: npm build
+- name: Clean dir (excluding 'build/') {{workdir}}
   shell: |
     find . -mindepth 1 -maxdepth 1 -type d ! -name 'build' -exec rm -r {} \;
     find . -mindepth 1 -maxdepth 1 ! -name 'build' -exec rm -f {} \;
   args:
-    chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
+    chdir: "{{workdir}}"
