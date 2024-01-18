@@ -6,7 +6,7 @@
 
 - name: npm build
   command: npm run build
-  ignore_errors: true
+
   args:
     chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
 
