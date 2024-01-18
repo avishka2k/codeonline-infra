@@ -33,4 +33,4 @@
 
 - name: msg
   debug:
-    msg: "{{browse_app}}"
+    msg: "{{browse_app.stdout}}"
