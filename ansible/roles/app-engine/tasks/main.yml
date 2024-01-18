@@ -5,7 +5,8 @@
     chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
 
 - name: npm build
-  shell: "CT= npm run build"
+  command: npm run build
+  ignore_errors: true
   args:
     chdir: "{{workspace}}/{{runid}}/dev/{{root_dir}}/"
 
