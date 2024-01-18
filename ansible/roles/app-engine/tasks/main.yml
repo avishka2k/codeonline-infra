@@ -26,3 +26,11 @@
   command: gcloud app deploy -q --version="{{version}}"
   args:
     chdir: "{{workdir}}"
+
+- name: Output
+  command: gcloud app browse -s codeonline-18
+  register: browse_app
+
+- name: msg
+  debug:
+    msg: "{{browse_app}}"
